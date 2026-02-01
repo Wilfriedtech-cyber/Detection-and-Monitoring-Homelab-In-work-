@@ -48,7 +48,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ## 🧩 Network Topology
 
-<img width="1392" height="718" alt="image" src="https://github.com/user-attachments/assets/ca981c11-3f2e-4231-9660-74719901909d" />
+<img width="1200" height="709" alt="image" src="https://github.com/user-attachments/assets/9b16402d-e421-4957-8bf1-7fd0f4c55d4c" />
 
 
 > *Diagram overview of the lab environment and log flow.*
@@ -65,7 +65,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 ---
 
 ### 2️⃣ Public-Facing Services (Attack Surface)
-- A **public IP** is assigned to the **FortiGate NGFW**
+- A **public IP** is assigned to the **PFsense 2**
 - Open ports:
   - **Port 22** → SSH (Cowrie honeypot)
   - **Port 80** → DVWA (Docker container)
