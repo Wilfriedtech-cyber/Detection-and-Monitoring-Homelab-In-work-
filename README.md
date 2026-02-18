@@ -48,7 +48,8 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ## 🧩 Network Topology
 
-<img width="1200" height="709" alt="image" src="https://github.com/user-attachments/assets/9b16402d-e421-4957-8bf1-7fd0f4c55d4c" />
+<img width="1506" height="1104" alt="image" src="https://github.com/user-attachments/assets/74285f76-88a1-4ed6-8d8a-384cdfd11183" />
+
 
 
 > *Diagram overview of the lab environment and log flow.*
@@ -57,14 +58,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ## 🧪 Lab Architecture Explained
 
-### 1️⃣ VPN Access
-- The **employee / analyst** connects to the internal network via **OpenVPN**
-- Access is restricted to **Splunk only**
-- No direct access to internal servers
-
----
-
-### 2️⃣ Public-Facing Services (Attack Surface)
+### 1️⃣ Public-Facing Services (Attack Surface)
 - A **public IP** is assigned to the **PFsense 2**
 - Open ports:
   - **Port 22** → SSH (Cowrie honeypot)
@@ -73,7 +67,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ---
 
-### 3️⃣ Network Security & Traffic Monitoring
+### 2️⃣ Network Security & Traffic Monitoring
 - **pfSense** is used as:
   - Router
   - Firewall
@@ -83,7 +77,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ---
 
-### 4️⃣ Endpoint Monitoring
+### 3️⃣Endpoint Monitoring
 - **Sysmon** is installed on:
   - Domain Controller
   - Client machine
