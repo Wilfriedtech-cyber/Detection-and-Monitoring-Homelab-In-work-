@@ -18,6 +18,24 @@ This lab is designed for:
 - 🎯 Simulating attacks (SQLi, XSS, scans)
 - 📊 Monitoring logs and attacker behavior
 
+
+## ⚙️ Requirements
+
+- Ubuntu (VM recommended)
+- Apache2
+- PHP + MySQL/MariaDB
+- Git
+- Kali Linux (attacker machine)
+
 ---
 
-## 🧠 Architecture
+# 🔓 DVWA Setup
+
+## 1. Start Apache
+
+```bash
+sudo systemctl start apache2
+sudo systemctl status apache2
+
+---
+## 2. S
