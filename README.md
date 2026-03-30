@@ -26,8 +26,8 @@ After passing **BTL1**, I wanted to go beyond theory and labs by:
 - Learning how logs are generated, forwarded, parsed, and correlated in Splunk
 
 While researching SOC lab ideas, I found inspiration from:
-- **Nakkouch Tarek** *(link)*
-- **Day Johnson** *(link)*
+- **Nakkouch Tarek** *(https://medium.com/@nakkouchtarek/from-zero-to-soc-homelab-my-journey-to-defense-in-depth-and-full-security-automation-cc07373b8b6d)*
+- **Day Johnson** *(https://blog.cyberwoxacademy.com/post/building-a-cybersecurity-homelab)*
 
 Rather than cloning an existing lab, I wanted to be **creative** and design my own architecture.  
 This is a **small foundational network**, which I plan to **expand over time**.
@@ -93,10 +93,9 @@ This is a **small foundational network**, which I plan to **expand over time**.
 This lab is a living project.
 
 Upcoming improvements will include:
-- More attack simulations
+- More attack simulations( Mittre Caldera )
 - Custom detection rules
 - Additional data sources
-- Expanded network segmentation
 - Threat hunting scenarios
 
 ---
