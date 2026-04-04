@@ -151,10 +151,13 @@ To receive logs from other machines (like Windows):
 Set port:
 
 ```
-9997
+8989
 ```
+You can change to whatever port number you would like, but I used 8989.
 
 Save.
+
+
 
 This allows **forwarders to send logs to Splunk**.
 
