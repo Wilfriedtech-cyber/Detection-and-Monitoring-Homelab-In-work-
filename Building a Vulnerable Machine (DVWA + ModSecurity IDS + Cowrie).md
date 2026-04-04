@@ -11,8 +11,6 @@ This section explains how to build a vulnerable lab environment including:
 
 ## 🎯 Purpose
 
-This lab is designed for:
-
 - 🔍 Web security testing
 - 🧪 WAF/IDS analysis
 - 🎯 Simulating attacks (SQLi, XSS, scans)
@@ -29,142 +27,237 @@ This lab is designed for:
 
 ---
 
-# 🔓 DVWA Setup
+# INSTALL DVWA
+https://www.youtube.com/watch?v=5PBZJg6-Gd4&t=14s
 
-## Step1 Start Apache
+## 1-) INSTALL A PHP LIBRARY 
 
-  bash
-  sudo systemctl start apache2
-  sudo systemctl status apache2
+we can see kali was able to find iot though nmap 
 
-2. Access DVWA
+to start it you just do
+sudo systemctl start apache2 
 
-Open in browser:
+and it should be up and ready for everything.
 
-http://localhost/DVWA
+default password are admin and password
 
-Default credentials:
+Systemctl status apache2
+to check if it’s running.
 
-username: admin
-password: password
-3. Configure Database
-cd /var/www/html/DVWA/config
-sudo nano config.inc.php
+---
 
-Example configuration:
+# INSTALL MODSECURITY
 
-$_DVWA['db_server'] = '127.0.0.1';
-$_DVWA['db_database'] = 'dvwa';
-$_DVWA['db_user'] = 'dvwa';
-$_DVWA['db_password'] = 'p@ssw0rd';
+it’s installed
 
-Then initialize:
+Here are the steps: 
+I will add the screenshot afterwards
 
-http://localhost/DVWA/setup.php
+## 1. Update your Ubuntu system
+Always start by updating packages.
 
-Click Create / Reset Database
+sudo apt update  
+sudo apt upgrade -y  
 
-🛡️ ModSecurity (IDS Mode)
-1. Update System
-sudo apt update
-sudo apt upgrade -y
-2. Install Apache (if not installed)
-sudo apt install apache2 -y
-sudo systemctl enable apache2
-sudo systemctl start apache2
-3. Install ModSecurity
-sudo apt install libapache2-mod-security2 -y
+## 2. Install Apache (if not already installed)
+
+sudo apt install apache2 -y  
+
+Enable and start Apache:
+
+sudo systemctl enable apache2  
+sudo systemctl start apache2  
+
+Verify it:
+
+systemctl status apache2  
+
+Open a browser and visit:  
+http://your_server_ip  
+
+You should see the Apache default page.
+
+## 3. Install ModSecurity
+Ubuntu includes ModSecurity in its repositories.
+
+sudo apt install libapache2-mod-security2 -y  
 
 Verify installation:
 
-apachectl -M | grep security
+apachectl -M | grep security  
 
-Expected output:
+Expected output:  
+security2_module (shared)  
 
-security2_module (shared)
-4. Enable ModSecurity
-sudo a2enmod security2
-sudo systemctl restart apache2
-5. Configure IDS Mode
-cd /etc/modsecurity
-sudo cp modsecurity.conf-recommended modsecurity.conf
-sudo nano modsecurity.conf
+## 4. Enable the ModSecurity module
 
-Find:
-
-SecRuleEngine DetectionOnly
-Modes
-Mode	Description
-Off	Disabled
-DetectionOnly	IDS (logs only)
-On	Blocking (WAF mode)
-
-Keep:
-
-SecRuleEngine DetectionOnly
-📦 Install OWASP CRS
-sudo apt install git -y
-cd /usr/share
-sudo git clone https://github.com/coreruleset/coreruleset.git
-sudo mv coreruleset owasp-crs
-cd owasp-crs
-sudo cp crs-setup.conf.example crs-setup.conf
-Configure Apache to Use CRS
-sudo nano /etc/apache2/mods-enabled/security2.conf
-
-Add:
-
-IncludeOptional /usr/share/owasp-crs/crs-setup.conf
-IncludeOptional /usr/share/owasp-crs/rules/*.conf
+sudo a2enmod security2  
 
 Restart Apache:
 
-sudo systemctl restart apache2
-🔍 Verify ModSecurity
+sudo systemctl restart apache2  
 
-Check module:
+## 5. Enable the ModSecurity engine
 
-apachectl -M | grep security
+Navigate to the config directory:
 
-Monitor logs:
+cd /etc/modsecurity  
 
-sudo tail -f /var/log/apache2/modsec_audit.log
-🧪 Test Detection
-XSS Test
-curl "http://localhost/?test=<script>alert(1)</script>"
-SQL Injection Test
-curl "http://localhost/index.php?id=1' OR '1'='1"
+Copy the recommended configuration:
 
-Check logs:
+sudo cp modsecurity.conf-recommended modsecurity.conf  
 
-sudo tail -f /var/log/apache2/modsec_audit.log
+Edit the config file:
 
-You should see detected attacks logged.
+sudo nano modsecurity.conf  
 
-🧾 Enable Detailed Logging
-sudo nano /etc/modsecurity/modsecurity.conf
+Find:
+
+SecRuleEngine DetectionOnly  
+
+This means:
+
+Mode | Behavior  
+--- | ---  
+Off | Disabled  
+DetectionOnly | IDS (logs attacks)  
+On | IPS/WAF (blocks attacks)  
+
+For IDS mode leave it as:
+
+SecRuleEngine DetectionOnly  
+
+Save and exit.
+
+## 6. Install the OWASP Core Rule Set (CRS)
+
+The OWASP CRS provides detection rules for:
+- SQL injection
+- XSS
+- Command injection
+- LFI/RFI
+- Web shell attempts
+- scanners
+
+Install git:
+
+sudo apt install git -y  
+
+Download the rule set:
+
+cd /usr/share  
+sudo git clone https://github.com/coreruleset/coreruleset.git  
+
+Rename it:
+
+sudo mv coreruleset owasp-crs  
+
+Go into the directory:
+
+cd /usr/share/owasp-crs  
+
+Copy the example config:
+
+sudo cp crs-setup.conf.example crs-setup.conf  
+
+## 7. Configure Apache to use CRS
+
+Edit the security2 configuration:
+
+sudo nano /etc/apache2/mods-enabled/security2.conf  
+
+Add these lines at the bottom:
+
+IncludeOptional /usr/share/owasp-crs/crs-setup.conf  
+IncludeOptional /usr/share/owasp-crs/rules/*.conf  
+
+Save and exit.
+
+## 8. Restart Apache
+
+sudo systemctl restart apache2  
+
+## 9. Verify ModSecurity is running
+
+Check loaded modules:
+
+apachectl -M | grep security  
+
+Check ModSecurity logs:
+
+sudo tail -f /var/log/apache2/modsec_audit.log  
+
+## 10. Test the IDS detection
+
+Send a simple attack test:
+
+curl "http://localhost/?test=<script>alert(1)</script>"  
+
+or:
+
+curl "http://localhost/index.php?id=1' OR '1'='1"  
+
+Now check logs:
+
+sudo tail -f /var/log/apache2/modsec_audit.log  
+
+You should see entries showing XSS or SQLi detection.
+
+working perfectly
+
+## 11. Enable detailed logging
+
+Edit:
+
+sudo nano /etc/modsecurity/modsecurity.conf  
 
 Ensure:
 
-SecAuditEngine On
-SecAuditLog /var/log/apache2/modsec_audit.log
-SecAuditLogParts ABIJDEFHZ
-🍯 Cowrie SSH Honeypot Setup
+SecAuditEngine On  
+SecAuditLog /var/log/apache2/modsec_audit.log  
+SecAuditLogParts ABIJDEFHZ  
+
+## 13. Useful commands
+
+Restart Apache:
+
+sudo systemctl restart apache2  
+
+Check ModSecurity logs:
+
+sudo tail -f /var/log/apache2/modsec_audit.log  
+
+Check Apache logs:
+
+sudo tail -f /var/log/apache2/error.log  
+
+---
+
+Vulnerable machine should be built congrats.!!!
+
+# 🍯 Cowrie SSH Honeypot Setup
 
 Cowrie is used to capture attacker activity on SSH.
 
-1. Installation Reference
+## 1. Installation Reference
 
-Follow:
+I Followed this youtube video to set this up:
 
 https://www.youtube.com/watch?v=-ufsdzLr5Oc
 
-2. Start Cowrie
+but here are some details on the installation process
+
+## 2. Start Cowrie
+
 cd cowrie
+
 bin/cowrie start
-3. Monitor Logs
+
+## 3. Monitor Logs
+
 tail -f /var/log/cowrie/cowrie.log
-4. Observing Attacks
+
+## 4. Observing Attacks
 
 From attacker machine (Kali):
 
@@ -173,8 +266,11 @@ nmap -A <target-ip>
 You should see:
 
 Open SSH port
-Activity captured in Cowrie logs
+
+## Activity captured in Cowrie logs
+
 📊 Useful Commands
+
 Apache
 sudo systemctl restart apache2
 sudo systemctl status apache2
