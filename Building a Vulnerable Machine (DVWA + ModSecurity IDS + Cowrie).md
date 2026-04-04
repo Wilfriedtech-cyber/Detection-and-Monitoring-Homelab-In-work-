@@ -28,30 +28,19 @@ This section explains how to build a vulnerable lab environment including:
 ---
 
 # INSTALL DVWA
+
 https://www.youtube.com/watch?v=5PBZJg6-Gd4&t=14s
 
-## 1-) INSTALL A PHP LIBRARY 
+NB: You should follow every step in this video as it is pretty straight forward.
+I recommend not changing the username and password of the dvwa php server.
 
-we can see kali was able to find iot though nmap 
+<img width="1289" height="835" alt="image" src="https://github.com/user-attachments/assets/afa24a77-979e-4c2f-bc9a-c842f00952fc" />
 
-to start it you just do
-sudo systemctl start apache2 
+<img width="1548" height="924" alt="image" src="https://github.com/user-attachments/assets/8072d2c5-c037-484c-9f70-26bb6f0bf5a8" />
 
-and it should be up and ready for everything.
-
-default password are admin and password
-
-Systemctl status apache2
-to check if it’s running.
-
----
+<img width="1293" height="839" alt="image" src="https://github.com/user-attachments/assets/b53a0e5d-ff83-4165-827d-6d095276c1a6" />
 
 # INSTALL MODSECURITY
-
-it’s installed
-
-Here are the steps: 
-I will add the screenshot afterwards
 
 ## 1. Update your Ubuntu system
 Always start by updating packages.
@@ -81,6 +70,12 @@ You should see the Apache default page.
 Ubuntu includes ModSecurity in its repositories.
 
 sudo apt install libapache2-mod-security2 -y  
+
+
+<img width="1294" height="821" alt="image" src="https://github.com/user-attachments/assets/dca37592-ced2-4742-833e-2b9afe9751e3" />
+
+<img width="1290" height="835" alt="image" src="https://github.com/user-attachments/assets/deaa7393-08f4-4112-bcfd-78c53d8c0828" />
+
 
 Verify installation:
 
@@ -128,6 +123,8 @@ For IDS mode leave it as:
 SecRuleEngine DetectionOnly  
 
 Save and exit.
+
+<img width="1293" height="841" alt="image" src="https://github.com/user-attachments/assets/f30528cf-3c81-40b7-98ba-22cc50f16ec9" />
 
 ## 6. Install the OWASP Core Rule Set (CRS)
 
@@ -177,6 +174,9 @@ Save and exit.
 
 sudo systemctl restart apache2  
 
+<img width="1291" height="833" alt="image" src="https://github.com/user-attachments/assets/502bf2fb-6b6d-43ad-887a-7da19981e552" />
+
+
 ## 9. Verify ModSecurity is running
 
 Check loaded modules:
@@ -204,6 +204,8 @@ sudo tail -f /var/log/apache2/modsec_audit.log
 You should see entries showing XSS or SQLi detection.
 
 working perfectly
+
+<img width="1221" height="370" alt="image" src="https://github.com/user-attachments/assets/f929a94b-c92d-4db2-8d65-2a11b545454c" />
 
 ## 11. Enable detailed logging
 
@@ -233,7 +235,9 @@ sudo tail -f /var/log/apache2/error.log
 
 ---
 
-Vulnerable machine should be built congrats.!!!
+<img width="1297" height="832" alt="image" src="https://github.com/user-attachments/assets/a1a2f68e-0f77-407d-af8e-ec68b05f845e" />
+
+
 
 # 🍯 Cowrie SSH Honeypot Setup
 
@@ -280,6 +284,9 @@ Apache Logs
 sudo tail -f /var/log/apache2/error.log
 Cowrie Logs
 tail -f /var/log/cowrie/cowrie.log
+
+
+Vulnerable machine should be built congrats.!!!
 
 # TLDR
 
