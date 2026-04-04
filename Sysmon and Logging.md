@@ -387,7 +387,9 @@ Go to your Splunk Web Interface:
 
 http://YOUR_SPLUNK_IP:8000
 ​
-  Go to Search & Reporting.
+
+Go to Search & Reporting.
+
 
 ### 7️⃣ Search for Apache / DVWA Logs
 
