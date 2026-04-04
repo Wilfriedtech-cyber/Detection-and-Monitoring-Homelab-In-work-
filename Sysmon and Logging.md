@@ -425,6 +425,7 @@ Run:
 
 source="*modsec_audit.log"
 ​
+
 Example query:
 
 source="*modsec_audit.log" | stats count by rule_id
