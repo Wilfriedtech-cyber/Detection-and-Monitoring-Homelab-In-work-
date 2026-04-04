@@ -412,8 +412,10 @@ user agent
 Example query:
  
  source="/var/log/apache2/access.log" | stats count by clientip
+
 ​
-  Shows who is attacking your DVWA.
+It Shows who is attacking your DVWA.
+
 
 ### 8️⃣ Search for ModSecurity Alerts
 
