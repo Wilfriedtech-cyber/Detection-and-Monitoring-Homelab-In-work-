@@ -48,7 +48,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ## 🧩 Network Topology
 
-<img width="1506" height="1104" alt="image" src="https://github.com/user-attachments/assets/74285f76-88a1-4ed6-8d8a-384cdfd11183" />
+<img width="1192" height="928" alt="image" src="https://github.com/user-attachments/assets/4ed40276-7a51-4504-b6a9-807ae00d15fb" />
 
 
 
@@ -59,11 +59,12 @@ This is a **small foundational network**, which I plan to **expand over time**.
 ## 🧪 Lab Architecture Explained
 
 ### 1️⃣ Public-Facing Services (Attack Surface)
-- A **public IP** is assigned to the **PFsense 2**
+- A **private IP simulating a Public IP** is assigned to **PFsense**
 - Open ports:
   - **Port 22** → SSH (Cowrie honeypot)
-  - **Port 80** → DVWA (Docker container)
+  - **Port 80** → DVWA (Web server)
 - Port forwarding is used to redirect traffic to the **vulnerable server**
+- Caldera agent Installed on Domain controller and windows client to simulate **MITRE ATT&CK TTPS**
 
 ---
 
