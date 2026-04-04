@@ -184,3 +184,8 @@ Apache Logs
 sudo tail -f /var/log/apache2/error.log
 Cowrie Logs
 tail -f /var/log/cowrie/cowrie.log
+
+# TLDR
+
+
+I would highly recommend to use the default configuration and once you finish with everything you can make any modification you would like (such as changing password, username etc ...)
