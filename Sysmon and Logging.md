@@ -387,7 +387,7 @@ Go to your Splunk Web Interface:
 
 http://YOUR_SPLUNK_IP:8000
 ​
-Go to Search & Reporting.
+  Go to Search & Reporting.
 
 ### 7️⃣ Search for Apache / DVWA Logs
 
@@ -413,7 +413,7 @@ Example query:
  
  source="/var/log/apache2/access.log" | stats count by clientip
 ​
-Shows who is attacking your DVWA.
+  Shows who is attacking your DVWA.
 
 ### 8️⃣ Search for ModSecurity Alerts
 
@@ -425,7 +425,8 @@ Example query:
 
 source="*modsec_audit.log" | stats count by rule_id
 ​
-This shows which WAF rules are triggered.
+
+  This shows which WAF rules are triggered.
 
 now we should see all the logs in splunk.
 
