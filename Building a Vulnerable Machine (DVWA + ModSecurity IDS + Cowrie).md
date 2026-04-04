@@ -187,27 +187,10 @@ Check ModSecurity logs:
 
 sudo tail -f /var/log/apache2/modsec_audit.log  
 
-## 10. Test the IDS detection
-
-Send a simple attack test:
-
-curl "http://localhost/?test=<script>alert(1)</script>"  
-
-or:
-
-curl "http://localhost/index.php?id=1' OR '1'='1"  
-
-Now check logs:
-
-sudo tail -f /var/log/apache2/modsec_audit.log  
-
-You should see entries showing XSS or SQLi detection.
-
-working perfectly
 
 <img width="1221" height="370" alt="image" src="https://github.com/user-attachments/assets/f929a94b-c92d-4db2-8d65-2a11b545454c" />
 
-## 11. Enable detailed logging
+## 10. Enable detailed logging
 
 Edit:
 
@@ -219,7 +202,7 @@ SecAuditEngine On
 SecAuditLog /var/log/apache2/modsec_audit.log  
 SecAuditLogParts ABIJDEFHZ  
 
-## 13. Useful commands
+## 11. Useful commands
 
 Restart Apache:
 
