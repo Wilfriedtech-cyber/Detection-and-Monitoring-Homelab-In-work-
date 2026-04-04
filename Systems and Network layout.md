@@ -26,4 +26,6 @@ After I installed vmware ESXI, now was the time to upload the virtual machines a
 
 I used a /29 as the subnet mask will be **255.255.255.248**. So that means the adress pool should be between **x.x.x.250 - x.x.x.254**  because the first address is for the default gateway on that subnet and the last one is for the broadcast address.
 
+
+**Tips**: You can still use the same iso to create two virtual machines as for the vulnerable machine and your splunk machine, you will need your ubuntu iso file. 
 Every default gateway on every interface would be connected to pfsense and one extra interface would be connected to my home router.( see Pfsense configuration )
