@@ -1,9 +1,13 @@
+# Review
 
+You will need to install the iso for pfsense and create a virtual machine. I have all the requirements in the first repository.
+The installation process should be straight forward but remember to add the LAN interface to your home router interface so you can do the initial configurations.
 
-
+when everything is done, you should be able to see this page by going to your browser and looking for your router ip address
 <img width="1039" height="801" alt="image" src="https://github.com/user-attachments/assets/d2da4bd0-0eed-4d12-baf5-ba7d9ec3da76" />
-username:Admin
-psswd:pfsense
+username: Admin
+
+psswd:  pfsense
 
 <img width="1038" height="802" alt="image" src="https://github.com/user-attachments/assets/c5f7c535-d5bb-4e8b-b6ad-2060a91414c3" />
 
