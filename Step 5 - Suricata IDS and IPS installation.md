@@ -13,6 +13,6 @@ Everything should be good.
 
 <img width="1294" height="803" alt="image" src="https://github.com/user-attachments/assets/3f22a575-260f-481d-a855-0a53b5ebdee9" />
 
-NB: kali is able to see my machine because everything is open 
+NB: kali is able to see my pfsense interface because everything is open for now
 
 Very easy now you can add any rules to detect and logs everything.
