@@ -37,7 +37,6 @@ This is a **small foundational network**, which I plan to **expand over time**.
 ## 🧠 Skills Gained
 - Splunk searches & SPL
 - Log correlation
-- Docker
 - Sysmon log investigation
 - Network security monitoring
 - IDS/IPS alert analysis
