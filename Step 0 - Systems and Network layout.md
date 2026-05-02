@@ -1,7 +1,7 @@
 # System and Network Requirements
 ## Server
 Picture
-(STILLS NEEDS TO WORK ON)
+<img width="3024" height="4032" alt="IMG_0985" src="https://github.com/user-attachments/assets/eaf5ee84-9c57-4fc8-bec5-f4b2a1be9568" />
 
 I used a Dell desktop with 64 GB RAM and 500 SSD GB and I installed vmware esxi onto it. Of course you can use other machines but I would recommend to have a 64 gb ram and at least 500GB for storage as VMWARE ESXI By itself took almost 200 GB. If you would like a good testing experience.
 
@@ -29,3 +29,7 @@ I used a /29 as the subnet mask will be **255.255.255.248**. So that means the a
 
 **Tips**: You can still use the same iso to create two virtual machines as for the vulnerable machine and your splunk machine, you will need your ubuntu iso file. 
 Every default gateway on every interface would be connected to pfsense and one extra interface would be connected to my home router.( see Pfsense configuration )
+
+<img width="1895" height="899" alt="image" src="https://github.com/user-attachments/assets/5de2245d-3034-44f5-ab31-9be8d36068b1" />
+
+<img width="1675" height="679" alt="image" src="https://github.com/user-attachments/assets/64569450-5c51-4a4d-a0a6-723f627261d8" />
