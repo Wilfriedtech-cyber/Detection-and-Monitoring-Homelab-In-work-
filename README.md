@@ -58,11 +58,10 @@ This is a **small foundational network**, which I plan to **expand over time**.
 ## 🧪 Lab Architecture Explained
 
 ### 1️⃣ Public-Facing Services (Attack Surface)
-- A **private IP simulating a Public IP** is assigned to **PFsense**
+- A **private IP** is assigned to **PFsense** acting as the network gateway.
 - Open ports:
   - **Port 22** → SSH (Cowrie honeypot)
   - **Port 80** → DVWA (Web server)
-- Port forwarding is used to redirect traffic to the **vulnerable server**
 - Caldera agent Installed on Domain controller and windows client to simulate **MITRE ATT&CK TTPS**
 
 ---
