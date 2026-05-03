@@ -436,3 +436,70 @@ source="*modsec_audit.log" | stats count by rule_id
 now we should see all the logs in splunk.
 
 ## Sending Sysmon and Win-event logs to Splunk(In work)
+
+2) Install Splunk Universal Forwarder
+6
+Download Splunk Universal Forwarder
+Install on the same machine as Sysmon
+During setup:
+Enter your Splunk indexer IP
+Set receiving port (default: 9997)
+3) Enable WinEventLog inputs (this is the key step)
+
+Edit:
+
+C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf
+
+Add:
+
+# Sysmon logs
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+disabled = 0
+index = sysmon
+
+# Security logs
+[WinEventLog://Security]
+disabled = 0
+index = wineventlog
+
+# System logs
+[WinEventLog://System]
+disabled = 0
+index = wineventlog
+
+# Application logs
+[WinEventLog://Application]
+disabled = 0
+index = wineventlog
+
+✔ Save the file
+
+4) Restart the forwarder
+splunk restart
+
+Or via Services:
+
+Restart SplunkForwarder
+5) Make sure Splunk indexer is ready
+
+On your Splunk server (Splunk Enterprise):
+
+Enable receiving:
+Settings → Forwarding and Receiving → Receive Data → Port 9997
+Create indexes (optional but recommended):
+sysmon
+wineventlog
+6) Verify data is coming in
+
+In Splunk search:
+
+index=sysmon
+
+or
+
+index=wineventlog
+
+You should see events like:
+
+Process creation (Sysmon Event ID 1)
+Logons (Security Event ID 4624)
