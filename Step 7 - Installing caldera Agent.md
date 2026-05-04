@@ -7,22 +7,30 @@
 sudo apt update && sudo apt upgrade -y
 sudo apt install git python3 python3-pip -y
 ```
+<img width="1303" height="865" alt="image" src="https://github.com/user-attachments/assets/c295af7e-653c-443c-9b5e-ef898ace1fc6" />
 
 ### Clone Caldera Repository
 ```bash
+<img width="1293" height="840" alt="image" src="https://github.com/user-attachments/assets/d2bb1e10-237f-4f13-a860-15ac7764fa89" />
+
 git clone https://github.com/mitre/caldera.git --recursive
 cd caldera
 ```
+<img width="946" height="754" alt="image" src="https://github.com/user-attachments/assets/6493ea63-0e6e-4f27-a9e0-c8490bfd2f8b" />
 
 ### Install Python Requirements
 ```bash
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt --break-system-packages
 ```
 
 ### Start Caldera Server
 ```bash
 python3 server.py --insecure
 ```
+<img width="1286" height="685" alt="image" src="https://github.com/user-attachments/assets/c2717aa4-f6d0-4f8a-b8ef-d9d3f87505ab" />
+
+
+<img width="954" height="682" alt="image" src="https://github.com/user-attachments/assets/c7f001a4-6f63-43cc-9a5c-42a223d8e2d4" />
 
 > By default, Caldera runs on **http://0.0.0.0:8888**
 > Default credentials:
