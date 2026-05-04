@@ -47,7 +47,7 @@ This is a **small foundational network**, which I plan to **expand over time**.
 
 ## 🧩 Network Topology
 
-<img width="1192" height="928" alt="image" src="https://github.com/user-attachments/assets/4ed40276-7a51-4504-b6a9-807ae00d15fb" />
+<img width="902" height="673" alt="image" src="https://github.com/user-attachments/assets/f52a1048-8ae7-48d8-9de9-a32881951f11" />
 
 
 
