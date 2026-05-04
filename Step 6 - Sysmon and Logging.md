@@ -437,21 +437,21 @@ now we should see all the logs in splunk.
 
 ## Sending Sysmon and Win-event logs to Splunk(In work)
 
-2) Install Splunk Universal Forwarder
-6
-Download Splunk Universal Forwarder
-Install on the same machine as Sysmon
-During setup:
-Enter your Splunk indexer IP
-Set receiving port (default: 9997)
-3) Enable WinEventLog inputs (this is the key step)
+## 1. Download Splunk Universal Forwarder
+- Go to the Splunk website and download the Universal Forwarder
+- Install it on the same machine as Sysmon
 
-Edit:
+## 2. Configure During Setup
+- Enter your Splunk indexer IP
+- Set receiving port (default: **9997**)
 
+## 3. Enable WinEventLog Inputs
+Edit the following file:
 C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf
 
-Add:
+Add the following configuration:
 
+```ini
 # Sysmon logs
 [WinEventLog://Microsoft-Windows-Sysmon/Operational]
 disabled = 0
@@ -471,35 +471,124 @@ index = wineventlog
 [WinEventLog://Application]
 disabled = 0
 index = wineventlog
+```
 
 ✔ Save the file
 
-4) Restart the forwarder
+<img width="927" height="642" alt="image" src="https://github.com/user-attachments/assets/23ed308f-51ab-4566-8d30-8645181162e1" />
+
+## 4. Restart the Forwarder
+Run the following command:
+
+```bash
 splunk restart
+```
 
-Or via Services:
+Or via **Services**:
+- Restart **SplunkForwarder**
 
-Restart SplunkForwarder
-5) Make sure Splunk indexer is ready
+<img width="1017" height="838" alt="image" src="https://github.com/user-attachments/assets/371c559a-490a-47af-ba79-2af40cc277a2" />
 
-On your Splunk server (Splunk Enterprise):
 
-Enable receiving:
-Settings → Forwarding and Receiving → Receive Data → Port 9997
-Create indexes (optional but recommended):
-sysmon
-wineventlog
-6) Verify data is coming in
+## 5. Prepare the Splunk Indexer
+On your **Splunk Enterprise** server:
+- Enable receiving: **Settings → Forwarding and Receiving → Receive Data → Port 9997**
+- Create the following indexes *(optional but recommended)*:
+  - `sysmon`
+  - `wineventlog`
 
-In Splunk search:
+## 6. Verify Data is Coming In
+Run the following searches in Splunk:
 
+```spl
 index=sysmon
+```
 
-or
-
+```spl
 index=wineventlog
+```
 
-You should see events like:
+You should see events such as:
+- **Process Creation** → Sysmon Event ID 1
+- **Logons** → Security Event ID 4624
 
-Process creation (Sysmon Event ID 1)
-Logons (Security Event ID 4624)
+<img width="998" height="517" alt="image" src="https://github.com/user-attachments/assets/fbaff9b8-68ad-4c1f-b059-83aadb0cef67" />
+
+# Send Suricata Logs to Splunk via Syslog (pfSense)
+
+## 1. Configure pfSense to Send Syslog to Splunk
+
+1. Log into your **pfSense Web UI**
+2. Go to **Status → System Logs → Settings**
+3. Scroll down to **Remote Logging Options**
+4. Check **Enable Remote Logging**
+5. Enter your Splunk server IP in **Remote log servers**:
+```
+<Splunk-IP>:514
+```
+6. Under **Remote Syslog Contents** check:
+- ✔ **Firewall Events**
+- ✔ **System Events**
+7. Click **Save**
+
+<img width="1212" height="743" alt="image" src="https://github.com/user-attachments/assets/d3e42552-12fb-4ee2-a9a3-a9226d939fe1" />
+
+---
+
+## 2. Configure Suricata to Log to eve.json
+Make sure Suricata EVE JSON logging is enabled:
+
+1. Go to **Services → Suricata → Interfaces**
+2. Click on your interface (e.g. WAN)
+3. Go to the **EVE Output Settings** tab
+4. Make sure **EVE JSON Log** is **Enabled**
+5. Click **Save**
+
+<img width="1080" height="840" alt="image" src="https://github.com/user-attachments/assets/16e13b9b-8514-416f-808e-0c9a28742b7e" />
+
+<img width="1216" height="757" alt="image" src="https://github.com/user-attachments/assets/b578e904-0639-46a0-a9e8-f7b702b7f116" />
+
+---
+
+## 3. Configure Splunk to Receive Syslog on UDP 514
+
+1. Log into **Splunk Enterprise Web UI**
+2. Go to **Settings → Data Inputs**
+3. Click **UDP**
+4. Click **New Local UDP**
+5. Set port: **514**
+6. Click **Next**
+7. Set the following:
+   - Source type: `syslog`
+   - Index: `suricata`
+8. Click **Review → Submit**
+
+<img width="1223" height="796" alt="image" src="https://github.com/user-attachments/assets/90a2ab4e-1017-4e8f-b92f-56cfc7e721cc" />
+<img width="516" height="260" alt="image" src="https://github.com/user-attachments/assets/fc135967-2a91-42dd-a1a0-f611853aceb9" />
+
+
+---
+
+## 4. Create the Suricata Index in Splunk
+
+1. Go to **Settings → Indexes**
+2. Click **New Index**
+3. Name it: `suricata`
+4. Click **Save**
+
+---
+
+## 5. Verify Logs are Coming In
+In Splunk Search:
+```spl
+index=suricata
+```
+
+You should see events such as:
+- Firewall block/allow events
+- Suricata alerts
+- System events from pfSense
+
+<img width="1229" height="798" alt="image" src="https://github.com/user-attachments/assets/17e81eeb-2b52-409c-b808-70d3ff3650ae" />
+
+---
