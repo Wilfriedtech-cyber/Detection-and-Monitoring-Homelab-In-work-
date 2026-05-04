@@ -1,18 +1,27 @@
+# Suricata IDS/IPS Configuration on pfSense
+
+## Installation Reference
+
+I followed this video for the Suricata installation on pfSense:
+
 https://www.youtube.com/watch?v=LaB6-Klnh7w
 
-I watched this video on how to add the suricata IDS and IPS.
+---
+
+## Accessing Suricata
+
+Once installed, navigate to **Services** in the pfSense web UI — you should see **Suricata** listed underneath it.
 
 <img width="1283" height="841" alt="image" src="https://github.com/user-attachments/assets/2630fc34-e9d5-4ebc-b83a-270e3cb45c34" />
 
+---
 
-Now go to services and underneath it you should see suricata
+## Managing Rules
 
-SID Mgmt is where you will create and detect rules 
-Everything should be good.
-
+The **SID Mgmt** tab is where you can create and manage detection rules.
 
 <img width="1294" height="803" alt="image" src="https://github.com/user-attachments/assets/3f22a575-260f-481d-a855-0a53b5ebdee9" />
 
-NB: kali is able to see my pfsense interface because everything is open for now
+> **Note:** At this stage, Kali Linux is able to reach the pfSense interface because all firewall rules are currently open for initial configuration purposes. This will be secured once everything is verified to be communicating correctly.
 
-Very easy now you can add any rules to detect and logs everything.
+From here you can add any rules to detect and log network activity across your interfaces.
