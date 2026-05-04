@@ -8,11 +8,12 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install git python3 python3-pip -y
 ```
 <img width="1303" height="865" alt="image" src="https://github.com/user-attachments/assets/c295af7e-653c-443c-9b5e-ef898ace1fc6" />
+But before the next step:
+
+<img width="948" height="520" alt="image" src="https://github.com/user-attachments/assets/1edd3ac0-c11d-41ba-b09f-2c287cc8db66" />
 
 ### Clone Caldera Repository
 ```bash
-<img width="1293" height="840" alt="image" src="https://github.com/user-attachments/assets/d2bb1e10-237f-4f13-a860-15ac7764fa89" />
-
 git clone https://github.com/mitre/caldera.git --recursive
 cd caldera
 ```
@@ -36,6 +37,8 @@ python3 server.py --insecure
 > Default credentials:
 > - **red** / **admin**
 > - **blue** / **admin**
+
+<img width="1899" height="1024" alt="image" src="https://github.com/user-attachments/assets/73ebae02-9d92-4779-8ec8-538b9f7efece" />
 
 ---
 
